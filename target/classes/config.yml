@@ -1,0 +1,51 @@
+# ======================
+# PaxFlags Configuration
+# ======================
+
+# === Town Management ===
+towns:
+  max_claims: 100           # Maximum chunks a town can claim
+  min_distance: 5           # Minimum chunks between new towns
+  allow_overclaiming: false # Whether towns can claim already-claimed land
+
+# === Border Visualization ===
+borders:
+  enabled_by_default: false # Whether borders are shown automatically
+  update_interval: 20       # Update frequency in ticks (20 ticks = 1 second)
+  render_radius: 10         # Max chunks away from player to show borders (10 = 160 blocks)
+
+  particles:
+    type: REDSTONE          # Particle type (REDSTONE, FLAME, etc.)
+    color:                  # RGB color (0-255)
+      r: 255
+      g: 0
+      b: 0
+    size: 1.0               # Particle size/dust options
+
+# === Dynmap Integration ===
+dynmap:
+  enabled: true             # Whether to show claims on Dynmap
+  default_color: "#FF0000"  # Default area color (hex)
+  show_labels: true         # Whether to display town names
+  layer_priority: 10        # Z-index for the Dynmap layer
+
+# === Database ===
+storage:
+  save_interval: 300        # Auto-save interval in seconds (5 minutes)
+  backup:
+    enabled: true           # Whether to create automatic backups
+    max_backups: 7          # Number of backups to keep
+
+# === Performance ===
+performance:
+  claim_checks:
+    async: true             # Whether to run claim checks asynchronously
+    cache_size: 1000        # Max cached claim results
+  particle_optimization:
+    enabled: true           # Whether to optimize border particles
+    max_per_tick: 500       # Max particles spawned per tick
+
+# === Debugging ===
+debug:
+  logging: false            # Enable detailed debug logs
+  particle_debug: false     # Show particle spawn locations in console

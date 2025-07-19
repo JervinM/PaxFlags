@@ -1,0 +1,12 @@
+com\paxflags\PlayerJoinListener.class
+com\paxflags\ToggleLinesCommand.class
+com\paxflags\TownCommand.class
+com\paxflags\PaxFlagsPlugin.class
+com\paxflags\TownManager.class
+com\paxflags\BorderManager$1.class
+com\paxflags\Town.class
+com\paxflags\FlagsCommand.class
+com\paxflags\DynmapHook.class
+com\paxflags\ProtectionListener.class
+com\paxflags\BorderManager.class
+com\paxflags\PlaceFlagCommand.class

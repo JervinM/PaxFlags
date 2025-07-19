@@ -1,0 +1,50 @@
+name: PaxFlags
+version: 1.0
+main: com.paxflags.PaxFlagsPlugin
+api-version: 1.21
+author: YourName
+description: Territory management plugin
+
+commands:
+  town:
+    description: Manage your town
+    usage: /town <create|delete|info|unclaim> [name]
+  placeflag:
+    description: Claim land with a flag
+    usage: /placeflag [town]
+  flags:
+    description: Toggle territory borders
+    usage: /flags
+  togglelines:
+    description: Toggle border visibility
+    usage: /togglelines
+
+permissions:
+  paxflags.*:
+    description: All permissions
+    default: op
+    children:
+      paxflags.town.create: true
+      paxflags.town.delete: true
+      paxflags.town.info: true
+      paxflags.town.unclaim: true
+      paxflags.placeflag: true
+      paxflags.flags.toggle: true
+  paxflags.town.create:
+    description: Create towns
+    default: true
+  paxflags.town.delete:
+    description: Delete towns
+    default: op
+  paxflags.town.info:
+    description: View town info
+    default: true
+  paxflags.town.unclaim:
+    description: Unclaim land
+    default: true
+  paxflags.placeflag:
+    description: Place claim flags
+    default: true
+  paxflags.flags.toggle:
+    description: Toggle borders
+    default: true

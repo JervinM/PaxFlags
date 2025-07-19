@@ -1,0 +1,43 @@
+messages:
+  prefix: "&7[&cPaxFlags&7] "
+
+  general:
+    only_players: "%prefix% &cOnly players can use this command."
+    no_permission: "%prefix% &cYou don't have permission!"
+
+  town:
+    usage:
+      header: "%prefix% &6―――― &eTown Commands &6――――"
+      create: "&e/town create <name> &7- Create a new town"
+      delete: "&e/town delete <name> &7- Delete your town"
+      info: "&e/town info [name] &7- View town info"
+      unclaim: "&e/town unclaim &7- Unclaim current chunk"
+    create:
+      success: "%prefix% &aTown &e%town% &acreated successfully!"
+      exists: "%prefix% &cTown &e%town% &calready exists!"
+      usage: "%prefix% &eUsage: /town create <name>"
+    delete:
+      success: "%prefix% &aTown &e%town% &adeleted!"
+      error: "%prefix% &cCouldn't delete town!"
+      usage: "%prefix% &eUsage: /town delete <name>"
+    info:
+      header: "%prefix% &6―――― &eTown: &6%town% &6――――"
+      owner: "&7Owner: &e%owner%"
+      claims: "&7Claims: &e%count%"
+    not_found: "%prefix% &cTown not found!"
+    not_owner: "%prefix% &cYou don't own this town!"
+    not_member: "%prefix% &cYou're not a member of this town!"
+    unclaim:
+      success: "%prefix% &aChunk unclaimed!"
+      error: "%prefix% &cCouldn't unclaim chunk!"
+
+  claim:
+    success: "%prefix% &aChunk claimed for &e%town%&a! (&e%x%,%z%&a)"
+    already_claimed: "%prefix% &cThis chunk is already claimed!"
+
+  flag:
+    invalid_target: "%prefix% &cYou must look at a banner block!"
+
+  borders:
+    enabled: "%prefix% &aTerritory borders enabled!"
+    disabled: "%prefix% &cTerritory borders disabled!"
