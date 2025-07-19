@@ -50,20 +50,30 @@ public class PlaceFlagCommand implements CommandExecutor {
         Chunk chunk = target.getChunk();
         String chunkKey = chunk.getX() + "," + chunk.getZ();
 
+        // Check if chunk is already claimed
         if (townManager.getAllClaimedChunks().contains(chunkKey)) {
             player.sendMessage(plugin.getMessage("claim.already_claimed"));
             return true;
         }
 
+        // ADDED: Check adjacency before claiming
+        if (!townManager.canClaimChunk(town, chunkKey)) {
+            player.sendMessage(plugin.getMessage("claim.not_adjacent"));
+            return true;
+        }
+
+        // Claim the chunk
         town.claimChunk(chunkKey);
         townManager.saveData();
 
+        // Update Dynmap marker with new claim bounds
         if (plugin.getDynmapHook() != null && plugin.getDynmapHook().isEnabled()) {
             plugin.getDynmapHook().updateTownMarker(
                 town.getName(),
-                chunk.getX(), chunk.getZ(),
-                chunk.getX(), chunk.getZ(),
-                chunk.getWorld().getName()
+                townManager.getMinChunkX(town), townManager.getMinChunkZ(town),
+                townManager.getMaxChunkX(town), townManager.getMaxChunkZ(town),
+                chunk.getWorld().getName(),
+                town.getBorderColor()
             );
         }
 

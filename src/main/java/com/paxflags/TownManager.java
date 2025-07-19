@@ -181,6 +181,32 @@ public class TownManager {
         return town != null && town.getOwner().equals(playerId);
     }
 
+    // NEW: adjacency check for claiming chunks
+    public boolean canClaimChunk(Town town, String chunkKey) {
+        if (town.getClaimedChunks().isEmpty()) {
+            // Allow first claim anywhere
+            return true;
+        }
+
+        String[] parts = chunkKey.split(",");
+        int x = Integer.parseInt(parts[0]);
+        int z = Integer.parseInt(parts[1]);
+
+        String[] neighbors = new String[] {
+            (x + 1) + "," + z,
+            (x - 1) + "," + z,
+            x + "," + (z + 1),
+            x + "," + (z - 1)
+        };
+
+        for (String neighbor : neighbors) {
+            if (town.isChunkClaimed(neighbor)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Helper methods for rectangular boundaries (for dynmap area markers)
     private int getMinChunkX(Town town) {
         return town.getClaimedChunks().stream()
