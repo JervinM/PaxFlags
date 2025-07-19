@@ -3,40 +3,102 @@ prefix: "&7[&cPaxFlags&7] "
 general:
   only_players: "%prefix% &cOnly players can use this command."
   no_permission: "%prefix% &cYou don't have permission!"
+  invalid_number: "%prefix% &cInvalid number: %input%"
+
+economy:
+  # Transaction messages
+  insufficient_funds: "%prefix% &cYou need %amount% to perform this action!"
+  payment_success: "%prefix% &aPaid %amount% for this action."
+  refund_received: "%prefix% &aReceived %amount% refund."
+  balance_check: "%prefix% &7Balance: &a%balance%"
+  admin_bypass: "%prefix% &aEconomy costs bypassed (Admin mode)"
+  
+  # Town bank messages
+  bank_deposit: "%prefix% &aDeposited %amount% to &e%town%&a's bank!"
+  bank_withdraw: "%prefix% &aWithdrew %amount% from &e%town%&a's bank!"
+  bank_balance: "%prefix% &e%town%&a's bank balance: &6%balance%"
+  bank_empty: "%prefix% &cTown bank is empty!"
+  bank_limit: "%prefix% &cMaximum bank limit reached (%limit%)"
+  
+  # Tax messages
+  tax_paid: "%prefix% &7Paid &c%amount% &7tax to &e%town%"
+  tax_collected: "%prefix% &aCollected &e%amount% &afrom town taxes!"
+  tax_rate_changed: "%prefix% &aTax rate set to &e%rate%%"
+  
+  # Upkeep messages
+  upkeep_charged: "%prefix% &cTown upkeep: &e%amount% &cdeducted"
+  upkeep_warning: "%prefix% &cWarning! &e%town% &chas &e%days% &cdays to pay &e%amount% &cor will disband"
+  upkeep_paid: "%prefix% &aPaid &e%amount% &afor town upkeep"
 
 town:
   usage:
     header: "%prefix% &6―――― &eTown Commands &6――――"
-    create: "&e/town create <name> &7- Create a new town"
-    delete: "&e/town delete <name> &7- Delete your town"
+    create: "&e/town create <name> &7- Create new town (%create_cost%)"
+    delete: "&e/town delete <name> &7- Delete town (%refund_amount% refund)"
     info: "&e/town info [name] &7- View town info"
-    unclaim: "&e/town unclaim &7- Unclaim current chunk"
+    unclaim: "&e/town unclaim &7- Unclaim chunk (%refund_amount% refund)"
+    deposit: "&e/town deposit <amount> &7- Add funds to town bank"
+    withdraw: "&e/town withdraw <amount> &7- Withdraw from town bank"
+    tax: "&e/town tax <rate> &7- Set tax rate (0-100)"
+    bank: "&e/town bank &7- View town finances"
+  
   create:
-    success: "%prefix% &aTown &e%town% &acreated successfully!"
+    success: "%prefix% &aTown &e%town% &acreated for %cost%!"
     exists: "%prefix% &cTown &e%town% &calready exists!"
     usage: "%prefix% &eUsage: /town create <name>"
+    free_first: "%prefix% &aFirst town created for free!"
+  
   delete:
-    success: "%prefix% &aTown &e%town% &adeleted!"
+    success: "%prefix% &aTown &e%town% &adeleted! Refund: %refund%"
     error: "%prefix% &cCouldn't delete town!"
     usage: "%prefix% &eUsage: /town delete <name>"
+  
   info:
     header: "%prefix% &6―――― &eTown: &6%town% &6――――"
     owner: "&7Owner: &e%owner%"
     claims: "&7Claims: &e%count%"
+    balance: "&7Bank: &a%balance%"
+    tax_rate: "&7Tax Rate: &e%rate%%"
+    value: "&7Total Value: &a%value%"
+  
   not_found: "%prefix% &cTown not found!"
   not_owner: "%prefix% &cYou don't own this town!"
   not_member: "%prefix% &cYou're not a member of this town!"
+  
   unclaim:
-    success: "%prefix% &aChunk unclaimed!"
+    success: "%prefix% &aChunk unclaimed! Refund: %refund%"
     error: "%prefix% &cCouldn't unclaim chunk!"
+  
+  bank:
+    no_funds: "%prefix% &cTown needs %amount% for this action!"
+    player_poor: "%prefix% &cYou need %amount% more!"
+    transfer_success: "%prefix% &aTransferred %amount% to town"
 
 claim:
-  success: "%prefix% &aChunk claimed for &e%town%&a! (&e%x%,%z%&a)"
+  success: "%prefix% &aChunk claimed for &e%town%&a! (&e%x%,%z%&a) Cost: %cost%"
   already_claimed: "%prefix% &cThis chunk is already claimed!"
+  not_adjacent: "%prefix% &cYou can only claim adjacent land!"
+  limit_reached: "%prefix% &cMaximum claims reached (%max%)"
+  economy_disabled: "%prefix% &cEconomy system is disabled!"
 
 flag:
   invalid_target: "%prefix% &cYou must look at a banner block!"
+  claim_cost: "%prefix% &7Claim Cost: &a%cost%"
 
 borders:
   enabled: "%prefix% &aTerritory borders enabled!"
   disabled: "%prefix% &cTerritory borders disabled!"
+  enemy_territory: "%prefix% &cNow entering &e%town%&c's territory!"
+  ally_territory: "%prefix% &aNow entering &e%town%&a's territory!"
+
+upkeep:
+  due_soon: "%prefix% &cTown upkeep due in %hours% hours!"
+  paid: "%prefix% &aTown upkeep paid for %days% days!"
+  overdue: "%prefix% &cTown &e%town% &cwas disbanded due to unpaid upkeep!"
+  grace_period: "%prefix% &cPay &e%amount% &cwithin &e%time% &cto save your town!"
+
+admin:
+  economy_bypass: "%prefix% &aBypassed economy costs"
+  force_unclaim: "%prefix% &aAdmin-unclaimed chunk from &e%town%"
+  town_created: "%prefix% &aAdmin-created town &e%town%"
+  funds_added: "%prefix% &aAdded &e%amount% &ato &e%town%"

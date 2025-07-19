@@ -6,14 +6,28 @@
 towns:
   max_claims: 100           # Maximum chunks a town can claim
   min_distance: 5           # Minimum chunks between new towns
-  allow_overclaiming: false # Whether towns can claim already-claimed land
+  allow_overclaiming: false  # Whether towns can claim already-claimed land
+  max_towns_per_player: 1   # Maximum towns a player can own
+
+# === Economy Settings ===
+economy:
+  enabled: true             # Enable economy features (requires Vault)
+  create_town_cost: 1000.0  # Cost to create a new town
+  claim_chunk_cost: 50.0    # Cost per chunk claim
+  unclaim_refund: 25.0      # Refund when unclaiming chunks
+  delete_town_refund: 500.0 # Partial refund when deleting town
+  daily_upkeep: 100.0       # Daily maintenance cost
+  allow_negative_balance: false
+  tax:
+    enabled: true           # Enable town taxes
+    default_rate: 0.05      # 5% default tax rate
 
 # === Border Visualization ===
 borders:
   enabled_by_default: false # Whether borders are shown automatically
   update_interval: 20       # Update frequency in ticks (20 ticks = 1 second)
   render_radius: 10         # Max chunks away from player to show borders (10 = 160 blocks)
-
+  
   particles:
     type: REDSTONE          # Particle type (REDSTONE, FLAME, etc.)
     color:                  # RGB color (0-255)
@@ -21,6 +35,7 @@ borders:
       g: 0
       b: 0
     size: 1.0               # Particle size/dust options
+    pulse_speed: 0.05       # Animation speed (radians per tick)
 
 # === Dynmap Integration ===
 dynmap:
@@ -28,6 +43,7 @@ dynmap:
   default_color: "#FF0000"  # Default area color (hex)
   show_labels: true         # Whether to display town names
   layer_priority: 10        # Z-index for the Dynmap layer
+  show_banks: true          # Show town bank balances in markers
 
 # === Database ===
 storage:
@@ -35,17 +51,30 @@ storage:
   backup:
     enabled: true           # Whether to create automatic backups
     max_backups: 7          # Number of backups to keep
+    backup_path: "backups"  # Subfolder for backups
 
 # === Performance ===
 performance:
   claim_checks:
     async: true             # Whether to run claim checks asynchronously
     cache_size: 1000        # Max cached claim results
+    cache_expiry: 300       # Cache timeout in seconds
   particle_optimization:
     enabled: true           # Whether to optimize border particles
     max_per_tick: 500       # Max particles spawned per tick
+    chunk_batch_size: 5     # Chunks processed per tick
+  economy:
+    update_interval: 600    # Economy upkeep interval (seconds)
 
 # === Debugging ===
 debug:
   logging: false            # Enable detailed debug logs
   particle_debug: false     # Show particle spawn locations in console
+  economy_debug: true       # Log economy transactions
+  claim_debug: false        # Log chunk claim events
+
+# === New Player Settings ===
+new_player:
+  free_first_town: true     # Allow first town creation for free
+  starter_credits: 500.0    # Starting balance for new players
+  protection_days: 7        # Days of newbie protection
